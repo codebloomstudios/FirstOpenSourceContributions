@@ -1,17 +1,13 @@
-/* Import Space Grotesk font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
-/* Global settings for the page */
 body {
     font-family: 'Manrope', sans-serif;
     background-color: "#fcfbfb";
     margin: 5%;
     padding: 0;
     line-height: 1.6;
-    /* Set default line height */
 }
 
-/* Headings should use Space Grotesk Medium (500 weight) */
 h1,
 h2,
 h3,
@@ -25,11 +21,8 @@ h6 {
 
 
 
-
-
 .container {
     margin-bottom: 1em;
-    /* Space between rows */
 }
 
 .row {
@@ -54,17 +47,4 @@ h6 {
 
     box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3); 
 
-}
-
-
-
-/* Keyframes for the scroll animation */
-@keyframes scroll {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
 }

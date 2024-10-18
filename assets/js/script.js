@@ -1,3 +1,4 @@
+// Function to return the colour(black/white) with highest contrast with the passed parameter
 function getTextColorForBackground(hex) {
     // Convert hex to RGB
     const rgb = hexToRgb(hex);
@@ -35,6 +36,7 @@ function calculateLuminance(r, g, b) {
     return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
 }
 
+// Function that splits 100% in to smaller n parts of random sizes
 function splitNumber(n, total = 100) {
     let parts = [];
     let remaining = total;
@@ -52,6 +54,8 @@ function splitNumber(n, total = 100) {
 
     return parts;
 }
+
+// Function to return all the factors of the parameter n
 function findFactorsAndPairs(n) {
     const factorPairs = [];
 
@@ -70,6 +74,7 @@ function findFactorsAndPairs(n) {
     return factorPairs;
 }
 
+// function to find pair with the least difference between them
 function findLeastDifferencePair(pairs) {
     let minDiff = Infinity;
     let closestPair = null;
@@ -127,8 +132,9 @@ function createContainers(count) {
 
 
 let i = 0
-let numberOfContributors = window.contributors.length;
-// Function to create rows based on the list of lists
+let numberOfContributors = window.contributors.length; // number of contributors
+
+// Function to create rows from the list of contributors
 createContainers(numberOfContributors).forEach(numbers => {
     const container = document.createElement('div');
     container.className = 'container';
