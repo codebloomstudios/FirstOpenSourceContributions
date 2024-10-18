@@ -1,0 +1,36 @@
+name: Auto Merge PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          # Get the list of changed files
+          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+
+          # Count the number of modified files
+          file_count=$(echo "$changed_files" | wc -l)
+
+          # Check if the only modified file is contributors.js
+          if [[ $file_count -eq 1 && "$changed_files" == *"./assets/js/contributors.js"* ]]; then
+            echo "changes_detected=true" >> $GITHUB_ENV
+          else
+            echo "changes_detected=false" >> $GITHUB_ENV
+          fi
+
+      - name: Merge PR
+        if: env.changes_detected == 'true'
+        uses: "peter-evans/merge-pull-request@v3"
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          merge-method: squash  # or 'merge' or 'rebase'
+          token: ${{ secrets.GITHUB_TOKEN }}
