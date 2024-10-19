@@ -139,8 +139,8 @@ createContainers(numberOfContributors).forEach(numbers => {
     const container = document.createElement('div');
     container.className = 'container';
     const row = document.createElement('div');
-    row.className = 'row';
-
+    row.className = 'row'
+    
 
     numbers.forEach(num => {
         const rect = document.createElement('div');

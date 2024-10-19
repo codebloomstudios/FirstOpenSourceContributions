@@ -30,10 +30,14 @@ h6 {
     height: 5em;
     width: 100%;
     overflow: hidden;
+    position: relative;
+    
 }
+
 
 .rectangle {
     /* height: 100%; */
+
     display: flex;
     text-align: center;
     align-items: center;
@@ -45,6 +49,5 @@ h6 {
     margin-right: 0.5em;
     border-radius: 0.5em;
 
-    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3); 
-
+    box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
 }
