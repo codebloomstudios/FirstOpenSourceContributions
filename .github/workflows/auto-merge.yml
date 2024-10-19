@@ -19,6 +19,8 @@ jobs:
 
         # Get the list of changed files in the PR
         CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+
+        echo "$CHANGED_FILES"
         
         # Check if the specific file is in the list of changed files
         if echo "$CHANGED_FILES" | grep -q "$FILE"; then
