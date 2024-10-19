@@ -12,6 +12,6 @@ window.contributors = [
     { name: "Dhruva V", social: "https://in.linkedin.com/in/dhruvanandan-v", color: "#000000" },
     {name:"Chiranthan H Y",social:"linkedin.com/in/chiranthan-h-y-62503a216",color:"#4585ed"},
     {name:"Namitha BM",social:"https://www.linkedin.com/in/namitha-bm-212b67201/",color:"#f26321"},
-  
-    { name:"Ananya Ravikiran Vastare",social :"https://www.linkedin.com/in/ananya-ravikiran-vastare-17037b250/",color:"#f2f7f7"},
+{ name:"Ananya Ravikiran Vastare",social :"https://www.linkedin.com/in/ananya-ravikiran-vastare-17037b250/",color:"#f2f7f7"},
+    {name: "Prarthana R Karanth", social: "https://www.linkedin.com/in/prarthana-karanth-3268b5259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", color:"#5DADE2"},
 ];
