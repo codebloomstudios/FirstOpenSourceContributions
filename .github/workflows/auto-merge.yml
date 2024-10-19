@@ -5,35 +5,33 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  auto-merge:
+  auto_merge:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-    - name: Check if specific file is changed
-      run: |
-        # Define the specific file you're watching
-        FILE="./assets/js/contributors.js"
+      - name: List files changed in the PR
+        id: file_changes
+        run: |
+          git fetch origin +refs/pull/${{ github.event.pull_request.number }}:refs/remotes/origin/pr/${{ github.event.pull_request.number }}
+          git diff --name-only origin/pr/${{ github.event.pull_request.number }} > files_changed.txt
+          cat files_changed.txt
 
-        # Get the list of changed files in the PR
-        CHANGED_FILES=$(git diff --name-only origin/main HEAD)
+      - name: Check if specific file is modified
+        id: check_file
+        run: |
+          if grep -q "assets/js/contributors.js" files_changed.txt; then
+            echo "File found"
+            echo "::set-output name=file_modified::true"
+          else
+            echo "File not found"
+            echo "::set-output name=file_modified::false"
+          fi
 
-        # Check if the specific file is in the list of changed files
-        if echo "$CHANGED_FILES" | grep -q "$FILE"; then
-          echo "Specific file $FILE has been changed."
-          echo "Merging the pull request..."
-          echo "::set-output name=should-merge::true"
-        else
-          echo "Specific file $FILE has NOT been changed."
-          echo "::set-output name=should-merge::false"
-        fi
-      id: file-check
-
-    - name: Merge the PR if the file has been changed
-      if: steps.file-check.outputs.should-merge == 'true'
-      run: |
-        gh pr merge ${{ github.event.pull_request.number }} --auto --squash
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge the PR if the specific file is modified
+        if: steps.check_file.outputs.file_modified == 'true'
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
