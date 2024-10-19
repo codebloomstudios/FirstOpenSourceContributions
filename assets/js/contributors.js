@@ -10,7 +10,8 @@ window.contributors = [
     {Name:"Mohammed Ismail", social: "https://github.com/mohammedismailmi", colour:"#9bdb84"},
     { name: "Sreeja Mandla", social: "www.linkedin.com/in/sreeja-mandla-148369276", color: "#170d0d" },
     { name: "Dhruva V", social: "https://in.linkedin.com/in/dhruvanandan-v", color: "#000000" },
-  {name:"Chiranthan H Y",social:"linkedin.com/in/chiranthan-h-y-62503a216",color:"#4585ed"},
+    {name:"Chiranthan H Y",social:"linkedin.com/in/chiranthan-h-y-62503a216",color:"#4585ed"},
+    {name:"Namitha BM",social:"https://www.linkedin.com/in/namitha-bm-212b67201/",color:"#f26321"},
   
     { name:"Ananya Ravikiran Vastare",social :"https://www.linkedin.com/in/ananya-ravikiran-vastare-17037b250/",color:"#f2f7f7"},
 ];
