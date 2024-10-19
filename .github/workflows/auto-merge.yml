@@ -27,10 +27,10 @@ jobs:
             echo "changes_detected=false" >> $GITHUB_ENV
           fi
 
-      - name: Merge PR
-        if: env.changes_detected == 'true'
-        uses: "peter-evans/merge-pull-request@v3"
-        with:
-          pull-request-number: ${{ github.event.pull_request.number }}
-          merge-method: squash  # or 'merge' or 'rebase'
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge the PR if the file has been changed
+        if: steps.file-check.outputs.should-merge == 'true'
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --auto --squash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
