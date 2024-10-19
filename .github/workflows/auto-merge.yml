@@ -15,7 +15,7 @@ jobs:
         id: check_changes
         run: |
           # Get the list of changed files
-          changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.pull_request.head.sha }})
+          changed_files=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
 
           # Count the number of modified files
           file_count=$(echo "$changed_files" | wc -l)
