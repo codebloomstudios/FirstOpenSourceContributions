@@ -18,8 +18,8 @@ jobs:
         FILE="assets/js/contributors.js"
 
         # Get the list of changed files in the PR
-        CHANGED_FILES=$(git diff --name-only origin/main HEAD)
-
+        CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+        
         # Check if the specific file is in the list of changed files
         if echo "$CHANGED_FILES" | grep -q "$FILE"; then
           echo "Specific file $FILE has been changed."
