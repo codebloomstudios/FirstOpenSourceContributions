@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
       - name: Check for Changes
         id: check_changes
         run: |
@@ -21,7 +22,7 @@ jobs:
           file_count=$(echo "$changed_files" | wc -l)
 
           # Check if the only modified file is contributors.js
-          if [[ $file_count -eq 1 && "$changed_files" == *"./assets/js/contributors.js"* ]]; then
+          if [[ $file_count -eq 1 && "$changed_files" == "assets/js/contributors.js" ]]; then
             echo "changes_detected=true" >> $GITHUB_ENV
           else
             echo "changes_detected=false" >> $GITHUB_ENV
