@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Merge the PR if the file has been changed
-        if: steps.file-check.outputs.should-merge == 'true'
+        if: env.changes_detected == 'true'
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --auto --squash
         env:
