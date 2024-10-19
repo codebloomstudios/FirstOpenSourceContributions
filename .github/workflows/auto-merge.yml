@@ -1,4 +1,4 @@
-name: Auto Merge PRs for Specific File
+name: Auto Merge PRs
 
 on:
   pull_request:
@@ -9,31 +9,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          # Fetch all history and branches
+          fetch-depth: 0
 
-    - name: Check if specific file is changed
-      run: |
-        # Define the specific file you're watching
-        FILE="./assets/js/contributors.js"
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          # Get the default branch (main or master)
+          DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
-        # Get the list of changed files in the PR
-        CHANGED_FILES=$(git diff --name-only origin/main HEAD)
+          # Get the list of changed files
+          changed_files=$(git diff --name-only origin/$DEFAULT_BRANCH ${{ github.sha }})
 
-        # Check if the specific file is in the list of changed files
-        if echo "$CHANGED_FILES" | grep -q "$FILE"; then
-          echo "Specific file $FILE has been changed."
-          echo "Merging the pull request..."
-          echo "::set-output name=should-merge::true"
-        else
-          echo "Specific file $FILE has NOT been changed."
-          echo "::set-output name=should-merge::false"
-        fi
-      id: file-check
+          # Count the number of modified files
+          file_count=$(echo "$changed_files" | wc -l)
 
-    - name: Merge the PR if the file has been changed
-      if: steps.file-check.outputs.should-merge == 'true'
-      run: |
-        gh pr merge ${{ github.event.pull_request.number }} --auto --squash
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Check if the only modified file is contributors.js
+          if [[ $file_count -eq 1 && "$changed_files" == "./assets/js/contributors.js" ]]; then
+            echo "changes_detected=true" >> $GITHUB_ENV
+          else
+            echo "changes_detected=false" >> $GITHUB_ENV
+          fi
+
+      - name: Merge the PR if the file has been changed
+        if: env.changes_detected == 'true'
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --auto --squash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
