@@ -14,5 +14,6 @@ window.contributors = [
     {name:"Chiranthan H Y", social:"linkedin.com/in/chiranthan-h-y-62503a216",color:"#4585ed"},
     {name:"Namitha BM",social:"https://www.linkedin.com/in/namitha-bm-212b67201/",color:"#f26321"},
   
+    { name:"Raj", social:"https://linkedin.com/company/codebloomstudios",color:"#f26321"},
     { name:"Ananya Ravikiran Vastare",social :"https://www.linkedin.com/in/ananya-ravikiran-vastare-17037b250/",color:"#f2f7f7"},
 ];
