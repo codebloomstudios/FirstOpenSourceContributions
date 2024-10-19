@@ -5,7 +5,15 @@ body {
     background-color: "#fcfbfb";
     margin: 5%;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.6;  
+    background-image: url("https://hacktoberfest.com/_next/static/media/opengraph.9dc60c9d.png");   
+    background-size: cover; /* Cover the entire page */  
+    background-repeat: no-repeat; /* Prevents the background image from repeating */  
+    background-position: center; /* Centers the image */  
+    height: 100vh; /* Makes sure the body takes the full height of the viewport */  
+    margin: 0; /* Removes default margin */  
+    color: white; /* Optional: sets text color */  
+ 
 }
 
 h1,
@@ -18,8 +26,6 @@ h6 {
     text-align: center;
     margin-bottom: 2em;
 }
-
-
 
 .container {
     margin-bottom: 1em;
