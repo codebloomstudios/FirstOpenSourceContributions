@@ -14,5 +14,6 @@ window.contributors = [
     { name: "Ananya Ravikiran Vastare", social: "https://www.linkedin.com/in/ananya-ravikiran-vastare-17037b250/", color: "#f2f7f7" },
     { name: "Prarthana R Karanth", social: "https://www.linkedin.com/in/prarthana-karanth-3268b5259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", color: "#5DADE2" },
     { name: "Raj", social: "https://linkedin.com/company/codebloomstudios", color: "#f26321" },
+    { name: "Aditya Tiwari", social: "https://github.com/ADITYATIWARI342005", color: "#f2f7f7" },
 
 ];
